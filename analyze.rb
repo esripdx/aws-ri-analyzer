@@ -107,7 +107,7 @@ puts
 puts "Running Instances:"
 puts
 instances.sort{|x,y| x.instance_type <=> y.instance_type}.each do |instance|
-  puts "  #{instance.instance_type}\t#{instance.availability_zone}\t#{instance.launch_time}\t#{instance.tags['Name']}"
+  puts "  #{instance.instance_type}\t#{instance.availability_zone}\t#{instance.launch_time}\t#{instance.vpc_id}\t#{instance.tags['Name']}"
 end
 puts
 puts
@@ -115,6 +115,8 @@ puts
 puts "Purchased Reserved Instances"
 puts 
 reserved.sort{|x,y| x.instance_type <=> y.instance_type}.each do |ri|
-  puts "  #{ri.instance_type}\t#{ri.availability_zone}"  
+  ri.instance_count.times do
+    puts "  #{ri.instance_type}\t#{ri.availability_zone}\t#{ri.offering_type}\t#{ri.product_description}"
+  end
 end
 puts
